@@ -1,5 +1,6 @@
 {
 	"name": "request",
+	"version": "0.1.0",
 	"devDependencies": {
 		"declaration-bundler-webpack-plugin": "^1.0.3",
 		"ts-loader": "^4.5.0",
