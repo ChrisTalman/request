@@ -5,6 +5,7 @@
         "module": "ES6",
         "moduleResolution": "node",
         "baseUrl": "./",
+        "rootDir": "../../",
 		"lib":
 		[
 			"es2017"
@@ -12,9 +13,9 @@
         "removeComments": true,
         "downlevelIteration": true,
         "alwaysStrict": true,
-        "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "allowUnreachableCode": true,
+		"declaration": true,
         "watch": true
     }
 }

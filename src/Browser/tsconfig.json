@@ -5,7 +5,7 @@
         "module": "ES6",
         "moduleResolution": "node",
         "baseUrl": "./",
-        "outDir": "./build/",
+        "rootDir": "../../",
 		"lib":
 		[
 			"es2015",
@@ -15,9 +15,9 @@
         "removeComments": true,
         "downlevelIteration": true,
         "alwaysStrict": true,
-        "allowJs": true,
         "allowSyntheticDefaultImports": true,
         "allowUnreachableCode": true,
+        "declaration": true,
         "watch": true
     }
 }
