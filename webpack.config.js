@@ -24,8 +24,8 @@ const BROWSER =
     },
     output:
     {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './')
+        filename: 'index.js',
+        path: path.resolve(__dirname, './Browser')
     },
     watch: true,
     module:
@@ -64,8 +64,8 @@ const NODE =
     },
     output:
     {
-        filename: '[name].js',
-        path: path.resolve(__dirname, './')
+        filename: 'index.js',
+        path: path.resolve(__dirname, './Node')
     },
     watch: true,
     module:
