@@ -1,12 +1,15 @@
 {
-	"name": "@bluecewe/request",
+	"name": "@bluecewe/request-browser",
 	"version": "0.1.0",
 	"devDependencies": {
-		"declaration-bundler-webpack-plugin": "^1.0.3",
+		"@types/node": "^10.7.1",
+		"@types/node-fetch": "^2.1.2",
 		"ts-loader": "^4.5.0",
 		"typescript": "^3.0.1",
 		"webpack": "^4.16.5",
-		"webpack-cli": "^3.1.0",
-		"webpack-node-externals": "^1.7.2"
+		"webpack-cli": "^3.1.0"
+	},
+	"dependencies": {
+		"node-fetch": "^2.2.0"
 	}
 }

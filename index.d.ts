@@ -1,11 +1,6 @@
-declare module '@bluecewe/request/browser'
+declare module '@bluecewe/request'
 {
 	export function promise <GenericJsonSuccess extends object, GenericJsonError extends object> (definition: Definition): Result <GenericJsonSuccess>;
-}
-
-declare module '@bluecewe/request/node'
-{
-	export default function(): boolean;
 }
 
 // Definition
