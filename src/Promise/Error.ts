@@ -1,5 +1,8 @@
 'use strict';
 
+// External Modules
+import { Response } from '@bluecewe/isomorphic-fetch';
+
 // Types
 export namespace ErrorDefinition
 {

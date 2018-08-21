@@ -1,5 +1,8 @@
 'use strict';
 
+// External Modules
+import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from '@bluecewe/isomorphic-fetch';
+
 // Internal Modules
 import { Domain } from '../';
 import
