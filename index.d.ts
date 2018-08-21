@@ -1,12 +1,27 @@
 // Module
 declare module '@bluecewe/request'
 {
+	// Promise
+    export type PromiseCallback = <GenericJsonSuccess extends object, GenericJsonError extends object> (definition: Definition) => Result <GenericJsonSuccess>;
 	export const promise: PromiseCallback;
-    export const Domain: Domain;
+    // Domain
+    export class Domain
+    {
+        public path: string;
+        public type: Definition['type'];
+        public auth: ConstructorParameters['auth'];
+        constructor(parameters: ConstructorParameters);
+        public promise: PromiseCallback;
+    }
+    export type AuthCallback = () => string;
+    export interface ConstructorParameters
+    {
+        path?: string;
+        type?: Definition['type'];
+        auth?: Auth;
+    }
+    export type Auth = string | AuthCallback;
 }
-
-// Promise
-export type PromiseCallback = <GenericJsonSuccess extends object, GenericJsonError extends object> (definition: Definition) => Result <GenericJsonSuccess>;
 
 // Definition
 export interface Definition
@@ -34,22 +49,4 @@ export class Result <GenericJsonSuccess extends object>
 {
     public response: Response;
     public json?: GenericJsonSuccess;
-}
-
-// Domain
-export type AuthCallback = () => string;
-export interface ConstructorParameters
-{
-    path?: string;
-    type?: Definition['type'];
-    auth?: Auth;
-}
-export type Auth = string | AuthCallback;
-export default class Domain
-{
-    public path: string;
-    public type: Definition['type'];
-    public auth: ConstructorParameters['auth'];
-    constructor(parameters: ConstructorParameters);
-    public promise: PromiseCallback;
 }
