@@ -25,7 +25,7 @@ declare module '@bluecewe/request'
 // Definition
 export interface Definition
 {
-    path?: string;
+    path: string;
     method: string;
 	type?: 'application/json' | 'application/x-www-form-urlencoded';
     auth?: string;
