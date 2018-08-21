@@ -3,8 +3,7 @@
 	"description": "request",
 	"version": "0.5.1",
 	"license": "UNLICENSED",
-	"repository":
-	{
+	"repository": {
 		"type": "git",
 		"url": "https://Bluecewe@bitbucket.org/Bluecewe/request.git"
 	},
