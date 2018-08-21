@@ -1,7 +1,7 @@
 // Module
 declare module '@bluecewe/request'
 {
-    export type PromiseCallback = <GenericJsonSuccess extends object, GenericJsonError extends object> (definition: Definition) => Result <GenericJsonSuccess>;
+    export type PromiseCallback = <GenericJsonSuccess extends object, GenericJsonError extends object> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
 	export const promise: PromiseCallback;
     // Domain
     export class Domain
