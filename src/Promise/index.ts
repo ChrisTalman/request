@@ -29,10 +29,11 @@ export default async function <GenericJsonSuccess extends object, GenericJsonErr
     const type = handleType(definition, domain, headers);
     handleHeaders(definition, headers);
     handleBody(definition, type, options);
+	const path = getPath({definition, domain});
 	let request: Request;
     try
     {
-        request = new Request(definition.path, options);
+        request = new Request(path, options);
     }
     catch (error)
     {
@@ -169,6 +170,17 @@ function handleBody(definition: Definition, type: Definition['type'], options: R
             options.body = form;
         };
     };
+};
+
+function getPath({definition, domain}: {definition: Definition, domain: Domain})
+{
+    const path = typeof definition.path === 'string' ? definition.path : domain.path;
+    if (typeof path !== 'string')
+    {
+        const error = new Error('Path must be string in Definition or Domain.');
+        throwUnexpected(error);
+    };
+    return path;
 };
 
 function parseDefinition(definition: Definition)
