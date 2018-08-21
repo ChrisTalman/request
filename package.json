@@ -1,5 +1,6 @@
 {
-	"name": "@bluecewe/request-browser",
+	"name": "@bluecewe/request",
+	"description": "request",
 	"version": "0.1.0",
 	"devDependencies": {
 		"@types/node": "^10.7.1",
