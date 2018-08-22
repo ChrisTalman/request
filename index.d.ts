@@ -1,3 +1,6 @@
+// External Modules
+import { Response } from '@bluecewe/isomorphic-fetch';
+
 // Module
 declare module '@bluecewe/request'
 {
