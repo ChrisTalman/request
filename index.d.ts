@@ -20,6 +20,36 @@ declare module '@bluecewe/request'
         auth?: Auth;
     }
     export type Auth = string | AuthCallback;
+	// Request Error
+	export class RequestError <GenericJsonError extends object> extends Error
+	{
+		public definition: ErrorDefinition.Variant <GenericJsonError>;
+	}
+    export namespace ErrorDefinition
+    {
+        export type Variant <GenericJsonError extends object> =
+            Variants.Unexpected
+            | Variants.RawResponse
+            | Variants.JsonResponse <GenericJsonError>;
+        export namespace Variants
+        {
+            export interface RawResponse
+            {
+                type: 'rawResponse';
+                response: Response;
+            }
+            export interface JsonResponse <GenericJsonError extends object>
+            {
+                type: 'jsonResponse';
+                json: GenericJsonError;
+            }
+            export interface Unexpected
+            {
+                type: 'unexpected';
+                error: Error;
+            }
+        }
+    }
 }
 
 // Definition
