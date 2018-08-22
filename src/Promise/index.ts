@@ -1,5 +1,7 @@
 'use strict';
 
+// To Do: It may be useful to throw a module-specific RequestError for JSON parse errors (i.e. response.json(), JSON.stringify()). Otherwise, it might be difficult for users to distinguish between a JSON error and other errors.
+
 // External Modules
 import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from '@bluecewe/isomorphic-fetch';
 
@@ -7,15 +9,14 @@ import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from 
 import { Domain } from '../';
 import
 {
-    throwUnexpected,
-    throwJsonResponseError,
-    throwRawResponseError
+    RequestRawError,
+	RequestJsonError
 } from './Error';
 
 // Types
 import { Definition } from '../';
 
-export default async function <GenericJsonSuccess extends object, GenericJsonError extends object> (definition: Definition)
+export default async function <GenericJsonSuccess extends object> (definition: Definition)
 {
 	const domain: Domain = this instanceof Domain ? this : null;
     parseDefinition(definition);
@@ -30,60 +31,24 @@ export default async function <GenericJsonSuccess extends object, GenericJsonErr
     handleHeaders(definition, headers);
     handleBody(definition, type, options);
 	const path = getPath({definition, domain});
-	let request: Request;
-    try
-    {
-        request = new Request(path, options);
-    }
-    catch (error)
-    {
-        throwUnexpected(error);
-        return;
-    };
-    let response: Response;
-    try
-    {
-        response = await fetch(request);
-    }
-    catch (error)
-    {
-        throwUnexpected(error);
-        return;
-    };
+	const request = new Request(path, options);
+    const response = await fetch(request);
     if (!response.ok)
     {
         if (definition.jsonResponseError)
         {
-            let json: GenericJsonError;
-            try
-            {
-                json = await response.json();
-            }
-            catch (error)
-            {
-                throwUnexpected(error);
-                return;
-            };
-            throwJsonResponseError(json);
+            const json = await response.json();
+            throw new RequestJsonError({json, response});
         }
         else
         {
-            throwRawResponseError(response);
+            throw new RequestRawError({response});
         };
         return;
     };
     if (definition.jsonResponseSuccess)
     {
-        let json: GenericJsonSuccess;
-        try
-        {
-            json = await response.json();
-        }
-        catch (error)
-        {
-            throwUnexpected(error);
-            return;
-        };
+        const json: GenericJsonSuccess = await response.json();
         const result = new Result <GenericJsonSuccess> ({response, json});
         return result;
     };
@@ -146,16 +111,7 @@ function handleBody(definition: Definition, type: Definition['type'], options: R
     {
         if (type === 'application/json')
         {
-            let json: string;
-            try
-            {
-                json = JSON.stringify(definition.body);
-            }
-            catch (error)
-            {
-                throwUnexpected(error);
-                return;
-            };
+            const json = JSON.stringify(definition.body);
             options.body = json;
         }
         else if (type === 'application/x-www-form-urlencoded')

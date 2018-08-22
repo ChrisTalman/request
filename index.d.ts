@@ -4,7 +4,7 @@ import { Response } from '@bluecewe/isomorphic-fetch';
 // Module
 declare module '@bluecewe/request'
 {
-    export type PromiseCallback = <GenericJsonSuccess extends object, GenericJsonError extends object> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
+    export type PromiseCallback = <GenericJsonSuccess extends object> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
 	export const promise: PromiseCallback;
     // Domain
     export class Domain
@@ -24,34 +24,25 @@ declare module '@bluecewe/request'
     }
     export type Auth = string | AuthCallback;
 	// Request Error
-	export class RequestError <GenericJsonError extends object> extends Error
+    export type RequestErrorType =
+        'rawResponse'
+        | 'jsonResponse'
+        | 'unexpected'
+    ;
+	export class RequestError extends Error
 	{
-		public definition: ErrorDefinition.Variant <GenericJsonError>;
+		public readonly type: RequestErrorType;
 	}
-    export namespace ErrorDefinition
+	export class RequestJsonError <GenericJsonError extends object> extends RequestError
+	{
+	    public readonly type: 'jsonResponse';
+	    public readonly json: GenericJsonError;
+	    public readonly response: Response;
+    }
+    export class RequestRawError extends RequestError
     {
-        export type Variant <GenericJsonError extends object> =
-            Variants.Unexpected
-            | Variants.RawResponse
-            | Variants.JsonResponse <GenericJsonError>;
-        export namespace Variants
-        {
-            export interface RawResponse
-            {
-                type: 'rawResponse';
-                response: Response;
-            }
-            export interface JsonResponse <GenericJsonError extends object>
-            {
-                type: 'jsonResponse';
-                json: GenericJsonError;
-            }
-            export interface Unexpected
-            {
-                type: 'unexpected';
-                error: Error;
-            }
-        }
+        public readonly type: 'rawResponse';
+        public readonly response: Response;
     }
 }
 
