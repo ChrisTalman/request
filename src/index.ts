@@ -29,9 +29,8 @@ export { promise };
 import { Result } from './Promise';
 export { Result };
 
-// Error
-import { RequestError } from './Promise/Error';
-export { RequestError };
+// Errors
+export * from './Promise/Error';
 
 // Domain
 import Domain from './Domain';
