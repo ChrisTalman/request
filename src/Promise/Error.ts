@@ -15,11 +15,6 @@ export type Type =
     | 'unexpected'
 ;
 
-export function throwUnexpected(error: Error)
-{
-    throw error;
-};
-
 export class RequestError extends Error
 {
     public readonly type: Type;
