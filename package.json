@@ -8,7 +8,10 @@
 		"url": "https://Bluecewe@bitbucket.org/Bluecewe/request.git"
 	},
 	"main": "index.js",
-	"browser": false,
+	"browser":
+	{
+		"./index.js": "./browser.js"
+	},
 	"devDependencies": {
 		"@types/node": "^10.7.1",
 		"@types/node-fetch": "^2.1.2",
