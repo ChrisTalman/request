@@ -130,7 +130,7 @@ function handleBody(definition: Definition, type: Definition['type'], options: R
 
 function getPath({definition, domain}: {definition: Definition, domain: Domain})
 {
-    const path = typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
+    const path = domain && typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
     return path;
 };
 
