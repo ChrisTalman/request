@@ -3,13 +3,14 @@
 // External Modules
 const path = require('path');
 const ignore = /(?:node_modules)$/;
+const clone = require('clone');
 
-// Config
-const CONFIG =
+// Browser
+const BROWSER =
 {
     mode: 'development',
     entry: './src/index.ts',
-    target: 'node',
+    target: 'web',
     resolve:
     {
         extensions: ['.js', '.ts'],
@@ -20,7 +21,7 @@ const CONFIG =
     },
     output:
     {
-        filename: 'index.js',
+        filename: 'browser.js',
         path: path.resolve(__dirname, './'),
         libraryTarget: 'umd'
     },
@@ -38,4 +39,9 @@ const CONFIG =
     }
 };
 
-module.exports = CONFIG;
+// Node
+const NODE = clone(BROWSER);
+NODE.target = 'node';
+NODE.output.filename = 'index.js';
+
+module.exports = [BROWSER, NODE];
