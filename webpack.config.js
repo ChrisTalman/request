@@ -1,12 +1,13 @@
 'use strict';
 
 // External Modules
-const path = require('path');
-const ignore = /(?:node_modules)$/;
-const clone = require('clone');
+const Path = require('path');
 
-// Browser
-const BROWSER =
+// Constants
+const IGNORE = /(?:node_modules)$/;
+
+// Config
+module.exports =
 {
     mode: 'development',
     entry: './src/index.ts',
@@ -21,9 +22,10 @@ const BROWSER =
     },
     output:
     {
-        filename: 'browser.js',
-        path: path.resolve(__dirname, './'),
-        libraryTarget: 'umd'
+        filename: 'index.js',
+        path: Path.resolve(__dirname, './'),
+        libraryTarget: 'umd',
+		globalObject: 'this'
     },
     watch: true,
     module:
@@ -33,15 +35,8 @@ const BROWSER =
             {
                 loader: 'ts-loader',
                 test: /\.tsx?$/,
-                exclude: ignore
+                exclude: IGNORE
             }
         ]
     }
 };
-
-// Node
-const NODE = clone(BROWSER);
-NODE.target = 'node';
-NODE.output.filename = 'index.js';
-
-module.exports = [BROWSER, NODE];
