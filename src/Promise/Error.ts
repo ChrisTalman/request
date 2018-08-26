@@ -67,7 +67,7 @@ function assignPropertiesFromParameters ({target, parameters}: {target: object, 
     const keys = Object.keys(parameters);
     for (let key of keys)
     {
-        const value = keys[key];
+        const value = parameters[key];
         target[key] = value;
     };
 };
