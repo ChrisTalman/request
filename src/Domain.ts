@@ -12,7 +12,7 @@ export interface ConstructorParameters
     type?: Definition['type'];
     auth?: Auth;
 	/** @see Domain.queryBody */
-    queryBody?: boolean;
+    queryBody?: string;
 };
 export type Auth = string | AuthCallback;
 
@@ -21,7 +21,7 @@ export default class Domain
     public path: string;
     public type: Definition['type'];
     public auth: ConstructorParameters['auth'];
-    /** Place body into query string, instead of body itself, for GET and HEAD method requests. */
+	/** If provided, in cases of GET and HEAD requests, inserts the request body into the query string using the given string as the parameter name. Otherwise, normally, the request body would be inserted into the request as a standard body. */
 	public queryBody: ConstructorParameters['queryBody'];
     constructor(parameters: ConstructorParameters)
     {

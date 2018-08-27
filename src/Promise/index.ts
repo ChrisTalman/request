@@ -144,9 +144,9 @@ function handleBody(definition: Definition, domain: Domain, type: Definition['ty
 function generateUrl({definition, domain, body}: {definition: Definition, domain: Domain, body: string | URLSearchParams})
 {
     const path = domain && typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
-    const queryBodyEnabled = QUERY_BODY_METHODS.includes(definition.method) && domain && domain.queryBody;
+    const queryBodyEnabled = QUERY_BODY_METHODS.includes(definition.method) && domain && typeof domain.queryBody === 'string';
     const queryBodyString = queryBodyEnabled && typeof body === 'string' ? JSON.stringify(body) : body.toString();
-    const query = queryBodyEnabled ? '?' + queryBodyString : '';
+    const query = queryBodyEnabled ? '?' + domain.queryBody + '=' + queryBodyString : '';
     const url = path + query;
     return url;
 };
