@@ -16,6 +16,13 @@ import
 // Types
 import { Definition } from '../';
 
+// Constants
+const QUERY_BODY_METHODS =
+[
+    'GET',
+    'HEAD'
+];
+
 export default async function <GenericJsonSuccess extends object> (definition: Definition)
 {
 	const domain: Domain = this instanceof Domain ? this : null;
@@ -29,9 +36,9 @@ export default async function <GenericJsonSuccess extends object> (definition: D
     handleAuth(definition, domain, headers);
     const type = handleType(definition, domain, headers);
     handleHeaders(definition, headers);
-    handleBody(definition, type, options);
-	const path = getPath({definition, domain});
-	const request = new Request(path, options);
+    const body = handleBody(definition, domain, type, options);
+	const url = generateUrl({definition, domain, body});
+	const request = new Request(url, options);
     const response = await fetch(request);
     if (!response.ok)
     {
@@ -105,14 +112,15 @@ function handleHeaders(definition: Definition, headers: Headers)
     };
 };
 
-function handleBody(definition: Definition, type: Definition['type'], options: RequestInit)
+function handleBody(definition: Definition, domain: Domain, type: Definition['type'], options: RequestInit)
 {
     if (definition.body)
     {
+        let body: string | URLSearchParams;
         if (type === 'application/json')
         {
             const json = JSON.stringify(definition.body);
-            options.body = json;
+            body = json;
         }
         else if (type === 'application/x-www-form-urlencoded')
         {
@@ -123,15 +131,24 @@ function handleBody(definition: Definition, type: Definition['type'], options: R
                 const value = definition.body[key];
                 form.set(key, value);
             };
-            options.body = form;
+            body = form;
         };
+        if (!domain || !domain.queryBody)
+        {
+            options.body = body;
+        };
+        return body;
     };
 };
 
-function getPath({definition, domain}: {definition: Definition, domain: Domain})
+function generateUrl({definition, domain, body}: {definition: Definition, domain: Domain, body: string | URLSearchParams})
 {
     const path = domain && typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
-    return path;
+    const queryBodyEnabled = QUERY_BODY_METHODS.includes(definition.method) && domain && domain.queryBody;
+    const queryBodyString = queryBodyEnabled && typeof body === 'string' ? JSON.stringify(body) : body.toString();
+    const query = queryBodyEnabled ? '?' + queryBodyString : '';
+    const url = path + query;
+    return url;
 };
 
 function parseDefinition(definition: Definition)

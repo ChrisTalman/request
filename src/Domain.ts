@@ -11,6 +11,8 @@ export interface ConstructorParameters
     path?: string;
     type?: Definition['type'];
     auth?: Auth;
+	/** @see Domain.queryBody */
+    queryBody?: boolean;
 };
 export type Auth = string | AuthCallback;
 
@@ -19,6 +21,8 @@ export default class Domain
     public path: string;
     public type: Definition['type'];
     public auth: ConstructorParameters['auth'];
+    /** Place body into query string, instead of body itself, for GET and HEAD method requests. */
+	public queryBody: ConstructorParameters['queryBody'];
     constructor(parameters: ConstructorParameters)
     {
         this.initialiseProperties(parameters);
