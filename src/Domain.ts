@@ -28,6 +28,10 @@ export default class Domain
 	public queryBody: ConstructorParameters['queryBody'];
     constructor(parameters: ConstructorParameters)
     {
+		if ('queryBody' in parameters && parameters.queryBody.length === 0)
+		{
+			throw new RequestDomainQueryBodyLengthError();
+		};
         this.initialiseProperties(parameters);
     };
     private initialiseProperties(parameters: ConstructorParameters)
@@ -40,4 +44,12 @@ export default class Domain
         };
     };
     public promise = promise;
+};
+
+export class RequestDomainQueryBodyLengthError extends Error
+{
+    constructor()
+    {
+        super('\'queryBody\' parameter must be string of length greater than zero, or undeclared.');
+    };
 };
