@@ -21,7 +21,10 @@ export default class Domain
     public path: string;
     public type: Definition['type'];
     public auth: ConstructorParameters['auth'];
-	/** If provided, in cases of GET and HEAD requests, inserts the request body into the query string using the given string as the parameter name. Otherwise, normally, the request body would be inserted into the request as a standard body. */
+    /**
+        If provided, guarantees a query string parameter containing the body as stringified JSON, for GET and HEAD requests. The given string is used as the parameter name.
+        If unprovided, the request body will be the standard request body, and will throw an exception for GET and HEAD requests.
+    */
 	public queryBody: ConstructorParameters['queryBody'];
     constructor(parameters: ConstructorParameters)
     {
