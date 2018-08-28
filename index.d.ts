@@ -12,6 +12,11 @@ declare module '@bluecewe/request'
         public path: string;
         public type: Definition['type'];
         public auth: ConstructorParameters['auth'];
+		/**
+	        If provided, guarantees a query string parameter containing the body as stringified JSON, for GET and HEAD requests. The given string is used as the parameter name.
+	        If unprovided, the request body will be the standard request body, and will throw an exception for GET and HEAD requests.
+	    */
+		public queryBody: ConstructorParameters['queryBody'];
         constructor(parameters: ConstructorParameters);
         public promise: PromiseCallback;
     }
@@ -21,6 +26,8 @@ declare module '@bluecewe/request'
         path?: string;
         type?: Definition['type'];
         auth?: Auth;
+    	/** @see Domain.queryBody */
+        queryBody?: string;
     }
     export type Auth = string | AuthCallback;
 	// Request Error
