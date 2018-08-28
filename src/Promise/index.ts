@@ -145,7 +145,7 @@ function generateUrl({definition, domain, body}: {definition: Definition, domain
 {
     const path = domain && typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
     const queryBodyEnabled = QUERY_BODY_METHODS.includes(definition.method) && domain && typeof domain.queryBody === 'string';
-    const queryBodyString = queryBodyEnabled && typeof body === 'string' ? domain.queryBody + '=' + encodeURIComponent(JSON.stringify(body)) : body.toString();
+    const queryBodyString = queryBodyEnabled && typeof body === 'string' ? domain.queryBody + '=' + encodeURIComponent(body) : body.toString();
     const query = queryBodyEnabled ? '?' + queryBodyString : '';
     const url = path + query;
     return url;
