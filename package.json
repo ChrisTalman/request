@@ -5,7 +5,7 @@
 	"license": "UNLICENSED",
 	"repository": {
 		"type": "git",
-		"url": "https://Bluecewe@bitbucket.org/Bluecewe/request.git"
+		"url": "https://bitbucket.org/Bluecewe/request.git"
 	},
 	"main": "index.js",
 	"scripts":
@@ -22,7 +22,7 @@
 		"webpack-cli": "^3.1.0"
 	},
 	"dependencies": {
-		"@bluecewe/isomorphic-fetch": "git+https://Bluecewe@bitbucket.org/Bluecewe/isomorphic-fetch.git",
+		"@bluecewe/isomorphic-fetch": "git+https://bitbucket.org/Bluecewe/isomorphic-fetch.git",
 		"node-fetch": "^2.2.0"
 	}
 }
