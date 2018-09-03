@@ -133,7 +133,7 @@ function handleBody(definition: Definition, domain: Domain, type: Definition['ty
             };
             body = form;
         };
-        if (!domain || !domain.queryBody)
+        if (!domain || (QUERY_BODY_METHODS.includes(definition.method) && !domain.queryBody))
         {
             options.body = body;
         };
