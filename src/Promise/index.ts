@@ -133,7 +133,8 @@ function handleBody(definition: Definition, domain: Domain, type: Definition['ty
             };
             body = form;
         };
-        if (!domain || (QUERY_BODY_METHODS.includes(definition.method) && !domain.queryBody))
+		const isBodyMethod = !domain || !domain.queryBody || !QUERY_BODY_METHODS.includes(definition.method);
+        if (isBodyMethod)
         {
             options.body = body;
         };
