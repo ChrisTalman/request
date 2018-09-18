@@ -61,7 +61,7 @@ export interface Definition
 	type?: 'application/json' | 'application/x-www-form-urlencoded';
     auth?: string;
 	headers?: DefinitionHeaders;
-    body: DefinitionBody;
+    body?: DefinitionBody;
     jsonResponseError?: boolean;
     jsonResponseSuccess?: boolean;
 }
