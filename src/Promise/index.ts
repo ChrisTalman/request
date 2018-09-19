@@ -147,7 +147,7 @@ function generateUrl({definition, domain, body}: {definition: Definition, domain
     const path = domain && typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
     const queryBodyEnabled = domain && typeof domain.queryBody === 'string';
     let queryBodyString: string;
-    if ('body' in definition && queryBodyEnabled)
+    if ('body' in definition && QUERY_BODY_METHODS.includes(definition.method) && queryBodyEnabled)
     {
         if (typeof body === 'string')
         {
@@ -158,7 +158,7 @@ function generateUrl({definition, domain, body}: {definition: Definition, domain
             queryBodyString = body.toString();
         };
     };
-    const query = queryBodyEnabled ? '?' + queryBodyString : '';
+    const query = typeof queryBodyString === 'string' ? '?' + queryBodyString : '';
     const url = path + query;
     return url;
 };
