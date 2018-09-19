@@ -145,8 +145,19 @@ function handleBody(definition: Definition, domain: Domain, type: Definition['ty
 function generateUrl({definition, domain, body}: {definition: Definition, domain: Domain, body: string | URLSearchParams})
 {
     const path = domain && typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
-    const queryBodyEnabled = 'body' in definition && domain && typeof domain.queryBody === 'string';
-    const queryBodyString = queryBodyEnabled && typeof body === 'string' ? domain.queryBody + '=' + encodeURIComponent(body) : body.toString();
+    const queryBodyEnabled = domain && typeof domain.queryBody === 'string';
+    let queryBodyString: string;
+    if ('body' in definition && queryBodyEnabled)
+    {
+        if (typeof body === 'string')
+        {
+            queryBodyString = domain.queryBody + '=' + encodeURIComponent(body);
+        }
+        else
+        {
+            queryBodyString = body.toString();
+        };
+    };
     const query = queryBodyEnabled ? '?' + queryBodyString : '';
     const url = path + query;
     return url;
