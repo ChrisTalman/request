@@ -8,14 +8,13 @@
 		"url": "https://bitbucket.org/Bluecewe/request.git"
 	},
 	"main": "index.js",
-	"scripts":
-	{
+	"scripts": {
 		"build": "./node_modules/.bin/webpack"
 	},
 	"devDependencies": {
+		"@bluecewe/isomorphic-fetch": "git+https://bitbucket.org/Bluecewe/isomorphic-fetch.git",
 		"@types/node": "^10.7.1",
 		"@types/node-fetch": "^2.1.2",
-		"@bluecewe/isomorphic-fetch": "git+https://bitbucket.org/Bluecewe/isomorphic-fetch.git",
 		"clone": "^2.1.2",
 		"ts-loader": "^4.5.0",
 		"typescript": "^3.0.1",
