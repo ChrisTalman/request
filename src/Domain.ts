@@ -5,7 +5,6 @@ import promise from './Promise';
 
 // Types
 import { Definition } from './';
-export type AuthCallback = () => string;
 export interface ConstructorParameters
 {
     path?: string;
@@ -15,6 +14,7 @@ export interface ConstructorParameters
     queryBody?: string;
 };
 export type Auth = string | AuthCallback;
+export type AuthCallback = () => string | false;
 
 export default class Domain
 {

@@ -65,7 +65,7 @@ export default async function <GenericJsonSuccess extends object> (definition: D
 
 function handleAuth(definition: Definition, domain: Domain, headers: Headers)
 {
-    let auth: string;
+    let auth: string | false;
     if (definition.auth)
     {
         auth = definition.auth;
@@ -81,6 +81,7 @@ function handleAuth(definition: Definition, domain: Domain, headers: Headers)
             auth = domain.auth(); // Consideration: It might be useful to encapsulate this callback in a try catch block, to handle user errors smoothly.
         };
     };
+    if (auth === false) return;
     headers.set('Authorization', auth);
 };
 

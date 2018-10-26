@@ -20,7 +20,6 @@ declare module '@bluecewe/request'
         constructor(parameters: ConstructorParameters);
         public promise: PromiseCallback;
     }
-    export type AuthCallback = () => string;
     export interface ConstructorParameters
     {
         path?: string;
@@ -30,6 +29,11 @@ declare module '@bluecewe/request'
         queryBody?: string;
     }
     export type Auth = string | AuthCallback;
+    /**
+        string: token value for Authorization header
+        false: Authorization header will not be sent
+    */
+    export type AuthCallback = () => string | false;
 	// Request Error
     export type RequestErrorType =
         'rawResponse'
