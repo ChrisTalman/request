@@ -17,6 +17,7 @@ declare module '@bluecewe/request'
 	        If unprovided, the request body will be the standard request body, and will throw an exception for GET and HEAD requests.
 	    */
 		public queryBody: ConstructorParameters['queryBody'];
+        public tls: ConstructorParameters['tls'];
         constructor(parameters: ConstructorParameters);
         public promise: PromiseCallback;
     }
@@ -27,6 +28,7 @@ declare module '@bluecewe/request'
         auth?: Auth;
     	/** @see Domain.queryBody */
         queryBody?: string;
+        tls?: Definition['tls'];
     }
     export type Auth = string | AuthCallback;
     /**
@@ -68,6 +70,7 @@ export interface Definition
     body?: DefinitionBody;
     jsonResponseError?: boolean;
     jsonResponseSuccess?: boolean;
+    tls?: DefinitionTls;
 }
 export interface DefinitionHeaders
 {
@@ -76,6 +79,13 @@ export interface DefinitionHeaders
 export interface DefinitionBody
 {
     [key: string]: any;
+}
+export interface DefinitionTls
+{
+    /** Path to public key file. */
+    cert: string;
+    /** Path to private key file. */
+    key: string;
 }
 
 // Result

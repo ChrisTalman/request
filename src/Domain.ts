@@ -12,6 +12,7 @@ export interface ConstructorParameters
     auth?: Auth;
 	/** @see Domain.queryBody */
     queryBody?: string;
+    tls?: Definition['tls'];
 };
 export type Auth = string | AuthCallback;
 export type AuthCallback = () => string | false;
@@ -26,6 +27,7 @@ export default class Domain
         If unprovided, the request body will be the standard request body, and will throw an exception for GET and HEAD requests.
     */
 	public queryBody: ConstructorParameters['queryBody'];
+    public tls: ConstructorParameters['tls'];
     constructor(parameters: ConstructorParameters)
     {
 		if ('queryBody' in parameters && parameters.queryBody.length === 0)

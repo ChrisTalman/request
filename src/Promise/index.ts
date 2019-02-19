@@ -33,6 +33,7 @@ export default async function <GenericJsonSuccess extends object> (definition: D
         method: definition.method,
         headers
     };
+    handleTls({definition, domain, options});
     handleAuth(definition, domain, headers);
     const type = handleType(definition, domain, headers);
     handleHeaders(definition, headers);
@@ -61,6 +62,23 @@ export default async function <GenericJsonSuccess extends object> (definition: D
     };
     const result = new Result <GenericJsonSuccess> ({response});
     return result;
+};
+
+function handleTls({definition, domain, options}: {definition: Definition, domain: Domain, options: RequestInit})
+{
+    const tls = definition.tls || (domain && domain.tls);
+    if (!tls) return;
+    let Agent;
+    try
+    {
+        Agent = require('https').agent;
+    }
+    catch (error)
+    {
+        return;
+    };
+    const agent = new Agent(tls);
+    options.agent = agent;
 };
 
 function handleAuth(definition: Definition, domain: Domain, headers: Headers)

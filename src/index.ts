@@ -11,6 +11,7 @@ export interface Definition
     body?: DefinitionBody;
     jsonResponseError?: boolean;
     jsonResponseSuccess?: boolean;
+    tls?: DefinitionTls;
 };
 export interface DefinitionHeaders
 {
@@ -19,6 +20,13 @@ export interface DefinitionHeaders
 export interface DefinitionBody
 {
     [key: string]: any;
+};
+export interface DefinitionTls
+{
+    /** Path to public key file. */
+    cert: string;
+    /** Path to private key file. */
+    key: string;
 };
 
 // Promise
