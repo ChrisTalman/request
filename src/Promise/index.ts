@@ -71,7 +71,7 @@ function handleTls({definition, domain, options}: {definition: Definition, domai
     let Agent;
     try
     {
-        Agent = require('https').agent;
+        Agent = require('https').Agent;
     }
     catch (error)
     {
