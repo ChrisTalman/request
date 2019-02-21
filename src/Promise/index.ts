@@ -68,17 +68,11 @@ function handleTls({definition, domain, options}: {definition: Definition, domai
 {
     const tls = definition.tls || (domain && domain.tls);
     if (!tls) return;
-    let Agent;
-    try
+    const tlsKeys = Object.keys(tls);
+    for (let key of tlsKeys)
     {
-        Agent = require('https').Agent;
-    }
-    catch (error)
-    {
-        return;
+        options[key] = tlsKeys[key];
     };
-    const agent = new Agent(tls);
-    options.agent = agent;
 };
 
 function handleAuth(definition: Definition, domain: Domain, headers: Headers)
