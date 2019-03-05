@@ -27,6 +27,8 @@ export interface DefinitionTls
     cert: string;
     /** Path to private key file. */
     key: string;
+    /** Disallow certificates which are not secured by a certificate authority. Default: true. */
+    rejectUnauthorized?: boolean;
 };
 
 // Promise
