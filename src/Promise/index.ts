@@ -71,7 +71,25 @@ function handleTls({definition, domain, options}: {definition: Definition, domai
     const tlsKeys = Object.keys(tls);
     for (let key of tlsKeys)
     {
-        options[key] = tlsKeys[key];
+        if (key === 'rejectUnauthorized') continue;
+        options[key] = tls[key];
+    };
+    const { rejectUnauthorized } = tls;
+    if (rejectUnauthorized === false)
+    {
+        let https;
+        try
+        {
+            https = require('https');
+        }
+        catch (error)
+        {
+            // Catch and suppress require() missing in browser.
+            return;
+        };
+        const { Agent } = https;
+        const agent = new Agent({rejectUnauthorized: false});
+        options.agent = agent;
     };
 };
 
