@@ -10,7 +10,8 @@ request
         tls:
         {
             cert: './cert.pem',
-            key: './key.pem'
+            key: './key.pem',
+            rejectUnauthorized: false
         }
     }
 );
