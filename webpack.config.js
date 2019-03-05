@@ -11,7 +11,7 @@ module.exports =
 {
     mode: 'development',
     entry: './src/index.ts',
-    target: 'web',
+    target: 'node',
     resolve:
     {
         extensions: ['.js', '.ts'],
