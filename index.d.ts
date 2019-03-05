@@ -4,7 +4,7 @@ import { Response } from '@bluecewe/isomorphic-fetch';
 // Module
 declare module '@bluecewe/request'
 {
-    export type PromiseCallback = <GenericJsonSuccess extends object> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
+    export type PromiseCallback = <GenericJsonSuccess> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
 	export const promise: PromiseCallback;
     // Domain
     export class Domain
@@ -89,7 +89,7 @@ export interface DefinitionTls
 }
 
 // Result
-export class Result <GenericJsonSuccess extends object>
+export class Result <GenericJsonSuccess>
 {
     public response: Response;
     public json?: GenericJsonSuccess;
