@@ -147,7 +147,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/*! exports provided: promise, Result, RequestError, RequestJsonError, RequestRawError, Domain */
+/*! exports provided: promise, Result, Domain, RequestError, RequestJsonError, RequestRawError */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

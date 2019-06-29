@@ -3,26 +3,22 @@
 	"description": "request",
 	"version": "1.3.2",
 	"license": "UNLICENSED",
-	"repository":
-	{
+	"repository": {
 		"type": "git",
 		"url": "https://bitbucket.org/Bluecewe/request.git"
 	},
 	"main": "index.js",
-	"scripts":
-	{
+	"scripts": {
 		"build": "./node_modules/.bin/webpack"
 	},
-	"devDependencies":
-	{
+	"devDependencies": {
 		"clone": "^2.1.2",
 		"ts-loader": "^4.5.0",
 		"typescript": "^3.0.1",
 		"webpack": "^4.16.5",
 		"webpack-cli": "^3.1.0"
 	},
-	"dependencies":
-	{
+	"dependencies": {
 		"@types/node": "^10.7.1",
 		"@types/node-fetch": "^2.1.2",
 		"@bluecewe/isomorphic-fetch": "bitbucket:bluecewe/isomorphic-fetch"
