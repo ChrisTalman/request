@@ -209,9 +209,6 @@ export class Result <GenericJsonSuccess extends object>
     constructor({response, json}: {response: Response, json?: GenericJsonSuccess})
     {
         this.response = response;
-        if (json)
-        {
-            this.json = json;
-        };
+        if (typeof json !== undefined) this.json = json;
     };
 };
