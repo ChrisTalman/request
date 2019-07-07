@@ -164,7 +164,9 @@ function handleBody(definition: Definition, domain: Domain, type: Definition['ty
 			};
 			body = form;
 		};
-		const isBodyMethod = !domain || !domain.queryBody || !QUERY_BODY_METHODS.includes(definition.method);
+		const definitionQueryBody = definition.queryBody;
+		const domainQueryBody = domain && domain.queryBody;
+		const isBodyMethod = (!definitionQueryBody && !domainQueryBody) || !QUERY_BODY_METHODS.includes(definition.method);
 		if (isBodyMethod)
 		{
 			options.body = body;
@@ -176,13 +178,14 @@ function handleBody(definition: Definition, domain: Domain, type: Definition['ty
 function generateUrl({definition, domain, body}: {definition: Definition, domain: Domain, body: string | URLSearchParams})
 {
 	const path = domain && typeof domain.path === 'string' ? domain.path + definition.path : definition.path;
-	const queryBodyEnabled = domain && typeof domain.queryBody === 'string';
+	const queryBodyName = definition.queryBody || (domain && domain.queryBody);
+	const queryBodyEnabled = typeof queryBodyName === 'string';
 	let queryBodyString: string;
 	if ('body' in definition && QUERY_BODY_METHODS.includes(definition.method) && queryBodyEnabled)
 	{
 		if (typeof body === 'string')
 		{
-			queryBodyString = domain.queryBody + '=' + encodeURIComponent(body);
+			queryBodyString = queryBodyName + '=' + encodeURIComponent(body);
 		}
 		else
 		{

@@ -71,6 +71,8 @@ export interface Definition
 	jsonResponseError?: boolean;
 	jsonResponseSuccess?: boolean;
 	tls?: DefinitionTls;
+	/** @see Domain.queryBody */
+	queryBody?: string;
 }
 export interface DefinitionHeaders
 {

@@ -12,6 +12,7 @@ export interface Definition
 	jsonResponseError?: boolean;
 	jsonResponseSuccess?: boolean;
 	tls?: DefinitionTls;
+	queryBody?: string;
 };
 export interface DefinitionHeaders
 {
