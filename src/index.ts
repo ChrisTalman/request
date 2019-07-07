@@ -3,32 +3,32 @@
 // Types
 export interface Definition
 {
-    path: string;
-    method: string;
+	path: string;
+	method: string;
 	type?: 'application/json' | 'application/x-www-form-urlencoded';
-    auth?: string;
+	auth?: string;
 	headers?: DefinitionHeaders;
-    body?: DefinitionBody;
-    jsonResponseError?: boolean;
-    jsonResponseSuccess?: boolean;
-    tls?: DefinitionTls;
+	body?: DefinitionBody;
+	jsonResponseError?: boolean;
+	jsonResponseSuccess?: boolean;
+	tls?: DefinitionTls;
 };
 export interface DefinitionHeaders
 {
-    [key: string]: any;
+	[key: string]: any;
 };
 export interface DefinitionBody
 {
-    [key: string]: any;
+	[key: string]: any;
 };
 export interface DefinitionTls
 {
-    /** Path to public key file. */
-    cert: string;
-    /** Path to private key file. */
-    key: string;
-    /** Disallow certificates which are not secured by a certificate authority. Default: true. */
-    rejectUnauthorized?: boolean;
+	/** Path to public key file. */
+	cert: string;
+	/** Path to private key file. */
+	key: string;
+	/** Disallow certificates which are not secured by a certificate authority. Default: true. */
+	rejectUnauthorized?: boolean;
 };
 
 // Promise
