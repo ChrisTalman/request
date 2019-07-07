@@ -110,6 +110,10 @@ function handleAuth(definition: Definition, domain: Domain, headers: Headers)
 		{
 			auth = domain.auth(); // Consideration: It might be useful to encapsulate this callback in a try catch block, to handle user errors smoothly.
 		};
+	}
+	else
+	{
+		return;
 	};
 	if (auth === false) return;
 	headers.set('Authorization', auth);
