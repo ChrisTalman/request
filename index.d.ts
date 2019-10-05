@@ -1,8 +1,8 @@
 // External Modules
-import { Response } from '@bluecewe/isomorphic-fetch';
+import { Response } from '@ChrisTalman/isomorphic-fetch';
 
 // Module
-declare module '@bluecewe/request'
+declare module '@ChrisTalman/request'
 {
 	export type PromiseCallback = <GenericJsonSuccess> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
 	export const promise: PromiseCallback;
