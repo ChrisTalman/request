@@ -1,7 +1,7 @@
 'use strict';
 
 // External Modules
-import { Response } from '@bluecewe/isomorphic-fetch';
+import { Response } from '@ChrisTalman/isomorphic-fetch';
 
 // Types
 export interface BaseConstructorParameters

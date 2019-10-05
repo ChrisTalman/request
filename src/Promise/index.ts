@@ -3,7 +3,7 @@
 // To Do: It may be useful to throw a module-specific RequestError for JSON parse errors (i.e. response.json(), JSON.stringify()). Otherwise, it might be difficult for users to distinguish between a JSON error and other errors.
 
 // External Modules
-import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from '@bluecewe/isomorphic-fetch';
+import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from '@ChrisTalman/isomorphic-fetch';
 
 // Internal Modules
 import { Domain } from '../';
