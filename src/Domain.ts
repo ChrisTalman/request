@@ -1,7 +1,7 @@
 'use strict';
 
 // Internal Modules
-import promise from './Promise';
+import { request } from './Request';
 
 // Types
 import { Definition } from './';
@@ -18,7 +18,7 @@ export interface ConstructorParameters
 export type Auth = string | AuthCallback;
 export type AuthCallback = () => string | false;
 
-export default class Domain
+export class Domain
 {
 	public path: string;
 	public type: Definition['type'];
@@ -47,7 +47,7 @@ export default class Domain
 			this[key] = value;
 		};
 	};
-	public promise = promise;
+	public request = request;
 };
 
 export class RequestDomainQueryBodyLengthError extends Error

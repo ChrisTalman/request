@@ -4,8 +4,9 @@ import { Response } from '@ChrisTalman/isomorphic-fetch';
 // Module
 declare module '@ChrisTalman/request'
 {
-	export type PromiseCallback = <GenericJsonSuccess> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
-	export const promise: PromiseCallback;
+	// Request
+	export type RequestFunction = <GenericJsonSuccess> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
+	export const request: RequestFunction;
 	// Domain
 	export class Domain
 	{
@@ -18,8 +19,9 @@ declare module '@ChrisTalman/request'
 		*/
 		public queryBody: ConstructorParameters['queryBody'];
 		public tls: ConstructorParameters['tls'];
+		public request: RequestFunction;
+		public headers?: DefinitionHeaders;
 		constructor(parameters: ConstructorParameters);
-		public promise: PromiseCallback;
 	}
 	export interface ConstructorParameters
 	{
@@ -29,6 +31,7 @@ declare module '@ChrisTalman/request'
 		/** @see Domain.queryBody */
 		queryBody?: string;
 		tls?: Definition['tls'];
+		headers?: DefinitionHeaders;
 	}
 	export type Auth = string | AuthCallback;
 	/**
@@ -88,6 +91,8 @@ export interface DefinitionTls
 	cert: string;
 	/** Path to private key file. */
 	key: string;
+	/** Disallow certificates which are not secured by a certificate authority. Default: true. */
+	rejectUnauthorized?: boolean;
 }
 
 // Result

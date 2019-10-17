@@ -6,15 +6,11 @@
 import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from '@ChrisTalman/isomorphic-fetch';
 
 // Internal Modules
-import { Domain } from '../';
-import
-{
-	RequestRawError,
-	RequestJsonError
-} from './Error';
+import { Domain } from './Domain';
+import { RequestRawError, RequestJsonError } from './Error';
 
 // Types
-import { Definition } from '../';
+import { Definition } from './';
 
 // Constants
 const QUERY_BODY_METHODS =
@@ -23,7 +19,7 @@ const QUERY_BODY_METHODS =
 	'HEAD'
 ];
 
-export default async function <GenericJsonSuccess extends object> (definition: Definition)
+export async function request <GenericJsonSuccess extends object> (definition: Definition)
 {
 	const domain: Domain = this instanceof Domain ? this : null;
 	parseDefinition(definition);

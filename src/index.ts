@@ -32,17 +32,7 @@ export interface DefinitionTls
 	rejectUnauthorized?: boolean;
 };
 
-// Promise
-import promise from './Promise';
-export { promise };
-
-// Result
-import { Result } from './Promise';
-export { Result };
-
-// Errors
-export * from './Promise/Error';
-
-// Domain
-import Domain from './Domain';
-export { Domain };
+// Exports
+export { request, Result } from './Request';
+export { Domain } from './Domain';
+export * from './Error';
