@@ -13,6 +13,7 @@ export interface ConstructorParameters
 	/** @see Domain.queryBody */
 	queryBody?: string;
 	tls?: Definition['tls'];
+	headers?: Definition['headers'];
 };
 export type Auth = string | AuthCallback;
 export type AuthCallback = () => string | false;
@@ -28,6 +29,7 @@ export default class Domain
 	*/
 	public queryBody: ConstructorParameters['queryBody'];
 	public tls: ConstructorParameters['tls'];
+	public headers: ConstructorParameters['headers'];
 	constructor(parameters: ConstructorParameters)
 	{
 		if ('queryBody' in parameters && parameters.queryBody.length === 0)

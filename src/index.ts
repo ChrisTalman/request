@@ -16,7 +16,7 @@ export interface Definition
 };
 export interface DefinitionHeaders
 {
-	[key: string]: any;
+	[key: string]: string | false;
 };
 export interface DefinitionBody
 {

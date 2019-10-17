@@ -36,7 +36,7 @@ export default async function <GenericJsonSuccess extends object> (definition: D
 	handleTls({definition, domain, options});
 	handleAuth(definition, domain, headers);
 	const type = handleType(definition, domain, headers);
-	handleHeaders(definition, headers);
+	handleHeaders(definition, domain, headers);
 	const body = handleBody(definition, domain, type, options);
 	const url = generateUrl({definition, domain, body});
 	const request = new Request(url, options);
@@ -77,7 +77,7 @@ function handleTls({definition, domain, options}: {definition: Definition, domai
 	const { rejectUnauthorized } = tls;
 	if (rejectUnauthorized === false)
 	{
-		let https;
+		let https: any;
 		try
 		{
 			https = require('https');
@@ -134,15 +134,30 @@ function handleType(definition: Definition, domain: Domain, headers: Headers)
 	return type;
 };
 
-function handleHeaders(definition: Definition, headers: Headers)
+function handleHeaders(definition: Definition, domain: Domain, headers: Headers)
 {
+	if (domain.headers)
+	{
+		const keys = Object.keys(domain.headers);
+		for (let key of keys)
+		{
+			const value = domain.headers[key];
+			if (value !== false)
+			{
+				headers.set(key, value);
+			};
+		};
+	};
 	if (definition.headers)
 	{
 		const keys = Object.keys(definition.headers);
 		for (let key of keys)
 		{
 			const value = definition.headers[key];
-			headers.set(key, value);
+			if (value !== false)
+			{
+				headers.set(key, value);
+			};
 		};
 	};
 };
