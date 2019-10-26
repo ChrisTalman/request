@@ -132,7 +132,7 @@ function handleType(definition: Definition, domain: Domain, headers: Headers)
 
 function handleHeaders(definition: Definition, domain: Domain, headers: Headers)
 {
-	if (domain.headers)
+	if (domain && domain.headers)
 	{
 		const keys = Object.keys(domain.headers);
 		for (let key of keys)
