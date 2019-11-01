@@ -1,6 +1,6 @@
 {
 	"name": "@chris-talman/request",
-	"description": "request",
+	"description": "Interface to execute HTTP requests in browser and Node",
 	"version": "2.0.1",
 	"scripts": {
 		"build": "./node_modules/.bin/webpack"
