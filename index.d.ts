@@ -2,7 +2,7 @@
 import { Response } from '@ChrisTalman/isomorphic-fetch';
 
 // Module
-declare module '@ChrisTalman/request'
+declare module '@chris-talman/request'
 {
 	// Request
 	export type RequestFunction = <GenericJsonSuccess> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
