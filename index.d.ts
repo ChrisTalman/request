@@ -5,7 +5,7 @@ import { Response } from '@ChrisTalman/isomorphic-fetch';
 declare module '@chris-talman/request'
 {
 	// Request
-	export type RequestFunction = <GenericJsonSuccess> (definition: Definition) => Promise<Result <GenericJsonSuccess>>;
+	export type RequestFunction = <GenericJsonSuccess, GenericResult extends Result<GenericJsonSuccess>> (definition: Definition) => Promise<GenericResult>;
 	export const request: RequestFunction;
 	// Domain
 	export class Domain
