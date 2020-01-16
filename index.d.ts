@@ -1,5 +1,5 @@
 // External Modules
-import { Response } from '@ChrisTalman/isomorphic-fetch';
+import { Response } from '@chris-talman/isomorphic-fetch';
 
 // Module
 declare module '@chris-talman/request'
