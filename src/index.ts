@@ -35,4 +35,5 @@ export interface DefinitionTls
 // Exports
 export { request, Result } from './Request';
 export { Domain } from './Domain';
+export { guaranteeResultJson } from './GuaranteeJson';
 export * from './Error';

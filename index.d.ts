@@ -7,6 +7,7 @@ declare module '@chris-talman/request'
 	// Request
 	export type RequestFunction = <GenericJsonSuccess, GenericResult extends Result<GenericJsonSuccess> = Result<GenericJsonSuccess>> (definition: Definition) => Promise<GenericResult>;
 	export const request: RequestFunction;
+
 	// Domain
 	export class Domain
 	{
@@ -60,6 +61,9 @@ declare module '@chris-talman/request'
 		public readonly type: 'rawResponse';
 		public readonly response: Response;
 	}
+
+	/** If `result.json` is *not* `undefined`, returns it, otherwise throws error. */
+	export function guaranteeResultJson <GenericJson extends object> (result: Result <GenericJson>): GenericJson;
 }
 
 // Definition
