@@ -4,6 +4,7 @@
 import { Response } from '@chris-talman/isomorphic-fetch';
 
 // Types
+import { Json } from './';
 export interface BaseConstructorParameters
 {
 	type: Type;
@@ -24,7 +25,7 @@ export class RequestError extends Error
 	};
 };
 
-export class RequestJsonError <GenericJsonError extends object> extends RequestError
+export class RequestJsonError <GenericJsonError extends Json> extends RequestError
 {
 	public readonly type: 'jsonResponse';
 	public readonly json: GenericJsonError;

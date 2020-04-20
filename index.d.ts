@@ -50,7 +50,7 @@ declare module '@chris-talman/request'
 	{
 		public readonly type: RequestErrorType;
 	}
-	export class RequestJsonError <GenericJsonError extends object> extends RequestError
+	export class RequestJsonError <GenericJsonError extends Json> extends RequestError
 	{
 		public readonly type: 'jsonResponse';
 		public readonly json: GenericJsonError;
@@ -63,7 +63,8 @@ declare module '@chris-talman/request'
 	}
 
 	/** If `result.json` is *not* `undefined`, returns it, otherwise throws error. */
-	export function guaranteeResultJson <GenericJson extends object> (result: Result <GenericJson>): GenericJson;
+	export function guaranteeResultJson <GenericJson extends Json> (result: Result <GenericJson>): GenericJson;
+	export type Json = object | boolean | number | string | null;
 }
 
 // Definition

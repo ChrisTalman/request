@@ -31,6 +31,7 @@ export interface DefinitionTls
 	/** Disallow certificates which are not secured by a certificate authority. Default: true. */
 	rejectUnauthorized?: boolean;
 };
+export type Json = object | boolean | number | string | null;
 
 // Exports
 export { request, Result } from './Request';

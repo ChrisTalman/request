@@ -10,7 +10,7 @@ import { Domain } from './Domain';
 import { RequestRawError, RequestJsonError } from './Error';
 
 // Types
-import { Definition } from './';
+import { Definition, Json } from './';
 
 // Constants
 const QUERY_BODY_METHODS =
@@ -19,7 +19,7 @@ const QUERY_BODY_METHODS =
 	'HEAD'
 ];
 
-export async function request <GenericJsonSuccess extends object> (definition: Definition)
+export async function request <GenericJsonSuccess extends Json> (definition: Definition)
 {
 	const domain: Domain = this instanceof Domain ? this : null;
 	parseDefinition(definition);
@@ -220,7 +220,7 @@ function parseDefinition(definition: Definition)
 	};
 };
 
-export class Result <GenericJsonSuccess extends object>
+export class Result <GenericJsonSuccess extends Json>
 {
 	public response: Response;
 	public json?: GenericJsonSuccess;
