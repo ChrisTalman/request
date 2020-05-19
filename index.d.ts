@@ -78,6 +78,7 @@ export interface Definition
 	body?: DefinitionBody;
 	jsonResponseError?: boolean;
 	jsonResponseSuccess?: boolean;
+	logJsonResponseError?: boolean;
 	tls?: DefinitionTls;
 	/** @see Domain.queryBody */
 	queryBody?: string;

@@ -11,6 +11,7 @@ export interface Definition
 	body?: DefinitionBody;
 	jsonResponseError?: boolean;
 	jsonResponseSuccess?: boolean;
+	logJsonResponseError?: boolean;
 	tls?: DefinitionTls;
 	queryBody?: string;
 };

@@ -42,7 +42,12 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 		if (definition.jsonResponseError)
 		{
 			const json = await response.json();
-			throw new RequestJsonError({json, response});
+			const error = new RequestJsonError({json, response});
+			if (definition.logJsonResponseError)
+			{
+				console.error(error);
+			};
+			throw error;
 		}
 		else
 		{
