@@ -9,12 +9,12 @@ export type Category = 'request' | 'response';
 
 export function debug({message, category, definition, domain}: {message: Array <any>, category: Category, definition: Definition, domain: Domain})
 {
-	const debug = domain.debug ? domain.debug : definition.debug;
+	const debug = domain?.debug ?? definition.debug;
 	if
 	(
-		(category === 'request' && debug && debug.request !== true)
+		(category === 'request' && debug?.request !== true)
 		||
-		(category === 'response' && debug && debug.response !== true)
+		(category === 'response' && debug?.response !== true)
 	)
 	{
 		return;
