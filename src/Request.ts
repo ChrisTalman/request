@@ -39,7 +39,9 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 	const request = new Request(url, options);
 	debug({message: ['URL:', url], category: 'request', definition, domain});
 	debug({message: ['Options:', options], category: 'request', definition, domain});
+	debug({message: ['Request:', request], category: 'request', definition, domain});
 	const response = await fetch(request);
+	debug({message: ['Response:', response], category: 'response', definition, domain});
 	if (!response.ok)
 	{
 		if (definition.jsonResponseError)
