@@ -14,6 +14,7 @@ export interface ConstructorParameters
 	queryBody?: string;
 	tls?: Definition['tls'];
 	headers?: Definition['headers'];
+	debug?: Definition['debug'];
 };
 export type Auth = string | AuthCallback;
 export type AuthCallback = () => string | false;
@@ -30,6 +31,7 @@ export class Domain
 	public queryBody: ConstructorParameters['queryBody'];
 	public tls: ConstructorParameters['tls'];
 	public headers: ConstructorParameters['headers'];
+	public debug?: ConstructorParameters['debug'];
 	constructor(parameters: ConstructorParameters)
 	{
 		if ('queryBody' in parameters && parameters.queryBody.length === 0)

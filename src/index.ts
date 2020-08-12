@@ -14,6 +14,7 @@ export interface Definition
 	logJsonResponseError?: boolean;
 	tls?: DefinitionTls;
 	queryBody?: string;
+	debug?: DefinitionDebug;
 };
 export interface DefinitionHeaders
 {
@@ -31,6 +32,11 @@ export interface DefinitionTls
 	key: string;
 	/** Disallow certificates which are not secured by a certificate authority. Default: true. */
 	rejectUnauthorized?: boolean;
+};
+export interface DefinitionDebug
+{
+	request?: boolean;
+	response?: boolean;
 };
 export type Json = object | boolean | number | string | null;
 

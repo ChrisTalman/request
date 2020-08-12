@@ -8,6 +8,7 @@ import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from 
 // Internal Modules
 import { Domain } from './Domain';
 import { RequestRawError, RequestJsonError } from './Error';
+import { debug } from './Debug';
 
 // Types
 import { Definition, Json } from './';
@@ -36,6 +37,8 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 	const body = handleBody(definition, domain, type, options);
 	const url = generateUrl({definition, domain, body});
 	const request = new Request(url, options);
+	debug({message: ['URL:', url], category: 'request', definition, domain});
+	debug({message: ['Options:', options], category: 'request', definition, domain});
 	const response = await fetch(request);
 	if (!response.ok)
 	{
