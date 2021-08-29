@@ -47,7 +47,7 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 		if (definition.jsonResponseError)
 		{
 			const json = await response.json();
-			const error = new RequestJsonError({json, response});
+			const error = new RequestJsonError({json, definition, response});
 			if (definition.logJsonResponseError)
 			{
 				console.error(error);
@@ -56,7 +56,7 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 		}
 		else
 		{
-			throw new RequestRawError({response});
+			throw new RequestRawError({definition, response});
 		};
 		return;
 	};

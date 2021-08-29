@@ -4,7 +4,7 @@
 import { Response } from '@chris-talman/isomorphic-fetch';
 
 // Types
-import { Json } from './';
+import { Definition, Json } from './';
 export interface BaseConstructorParameters
 {
 	type: Type;
@@ -29,8 +29,9 @@ export class RequestJsonError <GenericJsonError extends Json> extends RequestErr
 {
 	public readonly type: 'jsonResponse';
 	public readonly json: GenericJsonError;
+	public readonly definition: Definition;
 	public readonly response: Response;
-	constructor(parameters: {json: GenericJsonError, response: Response})
+	constructor(parameters: {json: GenericJsonError, definition: Definition, response: Response})
 	{
 		const type = 'jsonResponse';
 		const superParameters: BaseConstructorParameters =
@@ -47,8 +48,9 @@ export class RequestJsonError <GenericJsonError extends Json> extends RequestErr
 export class RequestRawError extends RequestError
 {
 	public readonly type: 'rawResponse';
+	public readonly definition: Definition;
 	public readonly response: Response;
-	constructor(parameters: {response: Response})
+	constructor(parameters: {definition: Definition, response: Response})
 	{
 		const type = 'rawResponse';
 		const superParameters: BaseConstructorParameters =
