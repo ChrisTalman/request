@@ -13,6 +13,7 @@ export interface BaseConstructorParameters
 export type Type =
 	'rawResponse'
 	| 'jsonResponse'
+	| 'jsonParse'
 	| 'unexpected'
 ;
 
@@ -53,6 +54,25 @@ export class RequestRawError extends RequestError
 	constructor(parameters: {definition: Definition, response: Response})
 	{
 		const type = 'rawResponse';
+		const superParameters: BaseConstructorParameters =
+		{
+			type,
+			message: 'Request responded with error.'
+		};
+		super(superParameters);
+		this.type = type;
+		assignPropertiesFromParameters({target: this, parameters});
+	};
+};
+
+export class RequestJsonParseError extends RequestError
+{
+	public readonly type: 'jsonParse';
+	public readonly definition: Definition;
+	public readonly response: Response;
+	constructor(parameters: {text: string, definition: Definition, response: Response})
+	{
+		const type = 'jsonParse';
 		const superParameters: BaseConstructorParameters =
 		{
 			type,

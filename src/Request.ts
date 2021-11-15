@@ -7,7 +7,7 @@ import { fetch, Headers, Request, RequestInit, Response, URLSearchParams } from 
 
 // Internal Modules
 import { Domain } from './Domain';
-import { RequestRawError, RequestJsonError } from './Error';
+import { RequestRawError, RequestJsonError, RequestJsonParseError } from './Error';
 import { debug } from './Debug';
 
 // Types
@@ -46,7 +46,7 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 	{
 		if (definition.jsonResponseError)
 		{
-			const json = await response.json();
+			const json = await parseJson <GenericJsonSuccess> ({definition, response});
 			const error = new RequestJsonError({json, definition, response});
 			if (definition.logJsonResponseError)
 			{
@@ -62,12 +62,34 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 	};
 	if (definition.jsonResponseSuccess)
 	{
-		const json: GenericJsonSuccess = await response.json();
+		const json = await parseJson <GenericJsonSuccess> ({definition, response});
 		const result = new Result <GenericJsonSuccess> ({response, json});
 		return result;
 	};
 	const result = new Result <GenericJsonSuccess> ({response});
 	return result;
+};
+
+async function parseJson <GenericJson> ({definition, response}: {definition: Definition, response: Response})
+{
+	let json: GenericJson;
+	try
+	{
+		json = await response.json();
+	}
+	catch (error)
+	{
+		if (error.type === 'invalid-json')
+		{
+			const text = await response.text();
+			throw new RequestJsonParseError({text, definition, response});
+		}
+		else
+		{
+			throw error;
+		};
+	};
+	return json;
 };
 
 function handleTls({definition, domain, options}: {definition: Definition, domain: Domain, options: RequestInit})
