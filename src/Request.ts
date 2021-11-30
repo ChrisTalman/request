@@ -72,16 +72,16 @@ export async function request <GenericJsonSuccess extends Json> (definition: Def
 
 async function parseJson <GenericJson> ({definition, response}: {definition: Definition, response: Response})
 {
+	const text = await response.text();
 	let json: GenericJson;
 	try
 	{
-		json = await response.json();
+		json = JSON.parse(text);
 	}
 	catch (error)
 	{
-		if (error.type === 'invalid-json')
+		if (error instanceof SyntaxError)
 		{
-			const text = await response.text();
 			throw new RequestJsonParseError({text, definition, response});
 		}
 		else

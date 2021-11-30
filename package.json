@@ -1,9 +1,9 @@
 {
 	"name": "@chris-talman/request",
 	"description": "Interface to execute HTTP requests in browser and Node",
-	"version": "3.4.0",
+	"version": "3.4.1",
 	"scripts": {
-		"build": "./node_modules/.bin/webpack"
+		"build": "webpack"
 	},
 	"devDependencies": {
 		"clone": "^2.1.2",
