@@ -6,7 +6,7 @@ export interface Definition
 	path: string;
 	method: string;
 	type?: 'application/json' | 'application/x-www-form-urlencoded';
-	auth?: string;
+	auth?: string | false;
 	headers?: DefinitionHeaders;
 	body?: DefinitionBody;
 	jsonResponseError?: boolean;
