@@ -124,13 +124,13 @@ function handleTls({definition, domain, options}: {definition: Definition, domai
 function handleAuth(definition: Definition, domain: Domain, headers: Headers)
 {
 	let auth: string | false;
-	if (definition.auth)
+	if (definition.auth !== undefined)
 	{
 		auth = definition.auth;
 	}
-	else if (domain && domain.auth)
+	else if (domain && domain.auth !== undefined)
 	{
-		if (typeof domain.auth === 'string')
+		if (typeof domain.auth === 'string' || domain.auth === false)
 		{
 			auth = domain.auth;
 		}

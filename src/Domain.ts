@@ -16,7 +16,7 @@ export interface ConstructorParameters
 	headers?: Definition['headers'];
 	debug?: Definition['debug'];
 };
-export type Auth = string | AuthCallback;
+export type Auth = string | false | AuthCallback;
 export type AuthCallback = () => string | false;
 
 export class Domain

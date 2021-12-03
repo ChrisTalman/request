@@ -36,7 +36,7 @@ declare module '@chris-talman/request'
 		headers?: DefinitionHeaders;
 		debug?: DefinitionDebug;
 	}
-	export type Auth = string | AuthCallback;
+	export type Auth = string | false | AuthCallback;
 	/**
 		string: token value for Authorization header
 		false: Authorization header will not be sent
